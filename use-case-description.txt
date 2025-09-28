@@ -1,0 +1,32 @@
+# Use Case Description – Shopping Cart System
+
+## Use Case 1: Đặt hàng
+
+- **Mục tiêu**: Khách hàng đặt mua sản phẩm đã chọn.  
+- **Actor chính**: Khách hàng  
+- **Điều kiện tiên quyết**: Khách hàng đã có sản phẩm trong giỏ hàng.  
+- **Luồng sự kiện chính**:  
+  1. Khách hàng mở giỏ hàng.  
+  2. Hệ thống hiển thị danh sách sản phẩm trong giỏ.  
+  3. Khách hàng nhấn nút “Đặt hàng”.  
+  4. Hệ thống yêu cầu nhập thông tin giao hàng (tên, địa chỉ, số điện thoại).  
+  5. Khách hàng nhập thông tin và xác nhận.  
+  6. Hệ thống tạo đơn hàng và thông báo thành công.  
+- **Kết quả**: Đơn hàng được ghi nhận trong hệ thống.  
+
+---
+
+## Use Case 2: Quản lý sản phẩm
+
+- **Mục tiêu**: Quản trị viên quản lý danh sách sản phẩm.  
+- **Actor chính**: Quản trị viên (Admin)  
+- **Điều kiện tiên quyết**: Admin đã đăng nhập vào hệ thống.  
+- **Luồng sự kiện chính**:  
+  1. Admin chọn “Quản lý sản phẩm”.  
+  2. Hệ thống hiển thị danh sách sản phẩm hiện có.  
+  3. Admin có thể chọn một trong các thao tác:  
+     - Thêm sản phẩm mới.  
+     - Sửa thông tin sản phẩm.  
+     - Xóa sản phẩm khỏi hệ thống.  
+  4. Hệ thống cập nhật và lưu thay đổi.  
+- **Kết quả**: Danh sách sản phẩm được cập nhật theo thao tác của Admin. 
