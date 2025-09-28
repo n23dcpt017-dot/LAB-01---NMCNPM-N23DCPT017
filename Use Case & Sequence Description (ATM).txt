@@ -1,0 +1,103 @@
+Tổng quan
+
+Mini project: ATM (quy trình: Rút tiền)
+
+Files liên quan:
+
+1. rút tiền ATM (UseCase LAB03) 
+
+2. rút tiền ATM (Sequence Diagram LAB03)
+
+3. LAB03 – Use Case & Sequence Description (ATM)
+
+I- Use Case 1 — Đăng nhập (Insert card + Nhập PIN)
+
+Actor chính: Khách hàng
+
+Mục tiêu: Xác thực khách hàng bằng thẻ và PIN để cho phép truy cập các chức năng của ATM.
+
+Tiền đề (Preconditions): Khách hàng có thẻ ATM hợp lệ; máy ATM hoạt động.
+
+Kịch bản chính (Main flow):
+
+Khách hàng chèn thẻ vào khe đọc thẻ.
+
+ATM hiển thị yêu cầu nhập PIN.
+
+Khách hàng nhập PIN.
+
+ATM gửi cardInfo và PIN đến Ngân hàng để xác thực.
+
+Ngân hàng trả về kết quả xác thực (hợp lệ / không hợp lệ).
+
+Nếu hợp lệ → khách hàng được phép truy cập menu chức năng.
+
+Luồng thay thế:
+
+PIN không hợp lệ: Nếu Ngân hàng trả về không hợp lệ, ATM cho phép nhập lại. Nếu sai vượt quá giới hạn (ví dụ 3 lần) → ATM giữ thẻ hoặc trả thẻ lại theo quy định và kết thúc phiên.
+
+Hậu điều kiện (Postconditions): Nếu thành công, phiên giao dịch bắt đầu và khách hàng có thể chọn chức năng (ví dụ Rút tiền).
+
+II- Use Case 2 — Rút tiền (theo sơ đồ của bạn)
+
+Actor chính: Khách hàng
+
+Mục tiêu: Cho phép khách hàng rút tiền mặt từ tài khoản thông qua ATM.
+
+Tiền đề (Preconditions):
+
+Khách hàng đã đăng nhập thành công (xác thực PIN).
+
+Thẻ và tài khoản đang khả dụng.
+
+Kịch bản chính (Main Flow) — tương ứng với Sequence Diagram:
+
+Chèn thẻ() — Khách hàng chèn thẻ vào ATM.
+
+Yêu cầu nhập PIN() — ATM hiển thị yêu cầu nhập PIN.
+
+Nhập PIN(PIN) — Khách hàng nhập mã PIN; ATM gửi mã PIN đến Ngân hàng để xác thực.
+
+Ngân hàng trả về Kết quả xác thực (hợp lệ / không hợp lệ).
+
+Nếu xác thực hợp lệ, khách hàng Chọn rút tiền + Nhập số tiền (khách chọn chức năng “Rút tiền” và nhập số_tiền).
+
+Kiểm tra số dư — ATM gửi yêu cầu kiểm tra số dư tới Ngân hàng: Kiểm_tra_số_dư(tài_khoản, số_tiền).
+
+Ngân hàng trả về Kết quả số dư (Đủ / Không đủ).
+
+Nếu Kết quả số dư = Đủ, ATM nhận Xác nhận số dư hợp lệ và tiếp tục.
+
+Phát tiền mặt + Biên lai — ATM phát tiền mặt cho khách và in biên lai.
+
+Cập nhật số dư — Ngân hàng cập nhật số dư (debit) — có thể thực hiện trước hoặc sau bước phát tiền theo thiết kế hệ thống (trong sơ đồ của bạn biểu diễn là bước cập nhật sau cùng).
+
+Trả thẻ() — ATM trả thẻ cho khách hàng; hiển thị “Giao dịch hoàn tất”.
+
+Khách hàng nhận tiền, biên lai và thẻ.
+
+Luồng thay thế (Alternative Flows):
+
+PIN sai: Nếu Ngân hàng trả về Kết quả xác thực = Thất bại, ATM hiển thị “PIN không đúng” và cho nhập lại. Sau 3 lần sai → kết thúc phiên (giữ hoặc trả thẻ theo chính sách).
+
+Số dư không đủ: Nếu Ngân hàng trả về Kết quả số dư = Không đủ, ATM hiển thị “Số dư không đủ”, cho khách quay lại menu hoặc kết thúc giao dịch và trả thẻ.
+
+Khách hủy giao dịch (Cancel): Khách bấm Hủy trong quá trình → ATM hủy, trả thẻ và kết thúc.
+
+Lỗi thiết bị/Timeout: Nếu ATM không thể phát tiền hoặc khách không thao tác → ATM hiển thị lỗi, ghi log và trả thẻ theo quy tắc vận hành.
+
+Kết quả thành công: Khách nhận được tiền và biên lai; số dư tài khoản được trừ tương ứng.
+
+Kết quả thất bại: Giao dịch hủy, không trừ tiền; ATM hiển thị thông báo lỗi và trả thẻ.
+
+
+
+* Yêu cầu phi chức năng / rủi ro
+
+Bảo mật: PIN và dữ liệu thẻ phải truyền an toàn (mã hóa) giữa ATM và Ngân hàng.
+
+Tính sẵn sàng: ATM phải xử lý timeout, lỗi phần cứng (không phát tiền) và rollback giao dịch nếu cần.
+
+Giới hạn lỗi: Số lần nhập PIN tối đa (thường 3 lần).
+
+Ghi nhật ký: Mọi giao dịch và lỗi phải được ghi log để truy vết.
