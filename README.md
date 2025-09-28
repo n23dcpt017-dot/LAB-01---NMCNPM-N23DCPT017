@@ -32,6 +32,8 @@
 
 # \- To keep learning about new technologies and trends in the IT industry  
 
+# Thank you for reading my introduction.
+
 # 
 # NMCNPM – Mini Project
 
@@ -43,5 +45,4 @@
 - **Lab05**: Tích hợp & Báo cáo ([ProjectReport])
 
 
-# Thank you for reading my introduction.
 
