@@ -1,14 +1,15 @@
-Tổng quan
+***Tổng quan
 
 Mini project: ATM (quy trình: Rút tiền)
 
 Files liên quan:
 
-1. rút tiền ATM (UseCase LAB03) 
+1. UseCase (rút tiền ATM)  
 
-2. rút tiền ATM (Sequence Diagram LAB03)
+2. Sequence Diagram (rút tiền ATM) 
 
-3. LAB03 – Use Case & Sequence Description (ATM)
+3. Use Case & Sequence Description (ATM)
+
 
 I- Use Case 1 — Đăng nhập (Insert card + Nhập PIN)
 
@@ -37,6 +38,7 @@ Luồng thay thế:
 PIN không hợp lệ: Nếu Ngân hàng trả về không hợp lệ, ATM cho phép nhập lại. Nếu sai vượt quá giới hạn (ví dụ 3 lần) → ATM giữ thẻ hoặc trả thẻ lại theo quy định và kết thúc phiên.
 
 Hậu điều kiện (Postconditions): Nếu thành công, phiên giao dịch bắt đầu và khách hàng có thể chọn chức năng (ví dụ Rút tiền).
+
 
 II- Use Case 2 — Rút tiền (theo sơ đồ của bạn)
 
