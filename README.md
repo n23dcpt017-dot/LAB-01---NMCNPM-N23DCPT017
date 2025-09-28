@@ -33,6 +33,15 @@
 # \- To keep learning about new technologies and trends in the IT industry  
 
 # 
+# NMCNPM – Mini Project
+
+## Danh sách Lab
+- **Lab01**: Cấu hình Git, tạo repo
+- **Lab02**: Phân tích yêu cầu & Use Case
+- **Lab03**: Sequence Diagram ATM
+- **Lab04**: Form Login (HTML, CSS, JS)
+- **Lab05**: Tích hợp & Báo cáo ([ProjectReport])
+
 
 # Thank you for reading my introduction.
 
