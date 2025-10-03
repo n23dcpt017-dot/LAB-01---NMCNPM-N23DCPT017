@@ -2,9 +2,19 @@ import java.sql.*;
 import java.security.MessageDigest;
 
 public class WithdrawModule {
-    private static final String URL = "jdbc:mysql://localhost:3306/atm_demo";
-    private static final String USER = "root";     // user MySQL của bạn
-    private static final String PASS = "";         // nếu root không có mật khẩu thì để rỗng ""
+    // Load driver 1 lần khi class được gọi
+    static {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            System.out.println("✅ MySQL JDBC Driver loaded");
+        } catch (ClassNotFoundException e) {
+            System.out.println("❌ Driver not found: " + e.getMessage());
+        }
+    }
+
+    private static final String URL = "jdbc:mysql://localhost:3306/atm_demo?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+    private static final String USER = "root";
+    private static final String PASS = "huonggiang12345678";
 
     // Hàm băm SHA-256
     private static String sha256(String base) throws Exception {
@@ -32,7 +42,7 @@ public class WithdrawModule {
                 return pinHash.equals(sha256(pin));
             }
         } catch (Exception e) {
-            System.out.println("Error verifyPin: " + e.getMessage());
+            e.printStackTrace(); // debug chi tiết
         }
         return false;
     }
@@ -84,11 +94,13 @@ public class WithdrawModule {
 
             } catch (Exception e) {
                 conn.rollback();
-                System.out.println("❌ Error: " + e.getMessage());
+                System.out.println("❌ Error in transaction:");
+                e.printStackTrace();
             }
 
         } catch (Exception e) {
-            System.out.println("DB Error: " + e.getMessage());
+            System.out.println("❌ DB Connection Error:");
+            e.printStackTrace();
         }
     }
 }

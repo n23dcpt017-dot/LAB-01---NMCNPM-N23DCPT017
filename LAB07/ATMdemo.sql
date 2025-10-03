@@ -1,24 +1,22 @@
-DROP DATABASE IF EXISTS atm_demo;
-CREATE DATABASE atm_demo;
+CREATE DATABASE IF NOT EXISTS atm_demo;
 USE atm_demo;
 
--- Bảng tài khoản
-CREATE TABLE accounts (
+-- Bảng accounts
+CREATE TABLE IF NOT EXISTS accounts (
     account_id INT AUTO_INCREMENT PRIMARY KEY,
-    balance DOUBLE
+    balance DOUBLE NOT NULL
 );
 
--- Bảng thẻ
-CREATE TABLE cards (
+-- Bảng cards
+CREATE TABLE IF NOT EXISTS cards (
     card_no VARCHAR(20) PRIMARY KEY,
+    pin_hash VARCHAR(64) NOT NULL,
     account_id INT,
-    pin_hash VARCHAR(64),
-    status VARCHAR(10) DEFAULT 'ACTIVE',
     FOREIGN KEY (account_id) REFERENCES accounts(account_id)
 );
 
--- Bảng giao dịch
-CREATE TABLE transactions (
+-- Bảng transactions
+CREATE TABLE IF NOT EXISTS transactions (
     tx_id INT AUTO_INCREMENT PRIMARY KEY,
     account_id INT,
     card_no VARCHAR(20),
@@ -26,12 +24,12 @@ CREATE TABLE transactions (
     tx_type VARCHAR(20),
     amount DOUBLE,
     balance_after DOUBLE,
-    time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    tx_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Thêm 1 tài khoản demo
-INSERT INTO accounts(balance) VALUES (5000.00);
+-- Dữ liệu mẫu
+INSERT INTO accounts(balance) VALUES (1000.0);
 
--- Thêm 1 thẻ demo (PIN = '1234')
-INSERT INTO cards(card_no, account_id, pin_hash)
-VALUES ('1234567890', 1, SHA2('1234', 256));
+-- PIN là 1234 -> hash SHA-256
+INSERT INTO cards(card_no, pin_hash, account_id)
+VALUES ('1234567890', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 1);

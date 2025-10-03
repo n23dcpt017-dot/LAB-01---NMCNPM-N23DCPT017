@@ -1,14 +1,13 @@
 public class TestWithdraw {
     public static void main(String[] args) {
-        String cardNo = "1234567890";   // số thẻ demo đã insert trong ATMdemo.sql
-        String pin = "1234";            // PIN demo
-        double amount = 1000.0;         // số tiền muốn rút
+        String cardNo = "1234567890";
+        String pin = "1234";   // thay bằng pin thật trong DB
 
         if (WithdrawModule.verifyPin(cardNo, pin)) {
-            System.out.println("PIN correct ✅");
-            WithdrawModule.withdraw(cardNo, amount);
+            System.out.println("✅ PIN correct!");
+            WithdrawModule.withdraw(cardNo, 1000);
         } else {
-            System.out.println("❌ Invalid PIN");
+            System.out.println("❌ Sai PIN hoặc thẻ không tồn tại");
         }
     }
 }
